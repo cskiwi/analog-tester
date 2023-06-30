@@ -1,4 +1,4 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "outputDirectory": "dist/analog/functions/__nitro.func"
+  "outputDirectory": "dist/analog/public"
 }
