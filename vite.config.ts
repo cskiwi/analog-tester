@@ -14,9 +14,9 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [
     analog({
-      nitro: {
-        preset: 'vercel',
-      },
+      // nitro: {
+      //   preset: 'vercel',
+      // },
     }),
   ],
   test: {
