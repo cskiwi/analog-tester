@@ -1,8 +1,10 @@
+import { AsyncPipe } from '@angular/common';
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-home',
   standalone: true,
+  imports: [AsyncPipe],
   template: `
     <h2>Analog</h2>
 
