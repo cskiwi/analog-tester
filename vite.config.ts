@@ -12,7 +12,13 @@ export default defineConfig(({ mode }) => ({
   resolve: {
     mainFields: ['module'],
   },
-  plugins: [analog()],
+  plugins: [
+    analog({
+      nitro: {
+        preset: 'vercel',
+      },
+    }),
+  ],
   test: {
     globals: true,
     environment: 'jsdom',
