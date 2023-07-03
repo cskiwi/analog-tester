@@ -27,11 +27,8 @@ export default defineConfig(({ mode }) => {
     test: {
       globals: true,
       environment: 'jsdom',
-      setupFiles: ['src/test-setup.ts'],
+      setupFiles: ['src/test.ts'],
       include: ['**/*.spec.ts'],
-      cache: {
-        dir: `./node_modules/.vitest`,
-      },
     },
     define: {
       'import.meta.vitest': mode !== 'production',
