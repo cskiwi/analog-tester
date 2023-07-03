@@ -15,12 +15,19 @@ export default defineConfig(({ mode }) => {
     },
     plugins: [
       analog({
-        nitro: {
-          output: {
-            dir: '../../.vercel/output', // <- Vercel output
-            publicDir: '../../.vercel/output/static', // <- Vercel output
-          },
+        prerender: {
+          routes: async () => ['/', '/about'],
         },
+
+        nitro:
+          mode === 'production'
+            ? {
+                output: {
+                  dir: '../../.vercel/output',
+                  publicDir: '../../.vercel/output/static',
+                },
+              }
+            : undefined,
       }),
       splitVendorChunkPlugin(),
     ],
