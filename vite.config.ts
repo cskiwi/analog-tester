@@ -18,8 +18,8 @@ export default defineConfig(({ mode }) => {
       analog({
         nitro: {
           output: {
-            dir: '../../../.vercel/output', // <- Vercel output
-            publicDir: '../../../.vercel/output/static', // <- Vercel output
+            dir: '../../.vercel/output', // <- Vercel output
+            publicDir: '../../.vercel/output/static', // <- Vercel output
           },
         },
       }),
