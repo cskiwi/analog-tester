@@ -30,7 +30,7 @@ export default defineConfig(({ mode }) => {
       setupFiles: ['src/test-setup.ts'],
       include: ['**/*.spec.ts'],
       cache: {
-        dir: `../node_modules/.vitest`,
+        dir: `./node_modules/.vitest`,
       },
     },
     define: {
