@@ -2,7 +2,6 @@
 
 import analog from '@analogjs/platform';
 import { defineConfig, splitVendorChunkPlugin } from 'vite';
-import tsConfigPaths from 'vite-tsconfig-paths';
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
@@ -22,9 +21,6 @@ export default defineConfig(({ mode }) => {
             publicDir: '../../.vercel/output/static', // <- Vercel output
           },
         },
-      }),
-      tsConfigPaths({
-        root: '../',
       }),
       splitVendorChunkPlugin(),
     ],
