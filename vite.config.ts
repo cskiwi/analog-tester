@@ -1,31 +1,44 @@
 /// <reference types="vitest" />
 
-import { defineConfig } from 'vite';
 import analog from '@analogjs/platform';
+import { defineConfig, splitVendorChunkPlugin } from 'vite';
+import tsConfigPaths from 'vite-tsconfig-paths';
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => ({
-  publicDir: 'src/assets',
-  build: {
-    target: ['es2020'],
-  },
-  resolve: {
-    mainFields: ['module'],
-  },
-  plugins: [
-    analog({
-      nitro: {
-        preset: 'vercel',
+export default defineConfig(({ mode }) => {
+  return {
+    publicDir: 'src/public',
+    optimizeDeps: {
+      include: ['@angular/common', '@angular/forms'],
+    },
+    build: {
+      target: ['es2020'],
+    },
+    plugins: [
+      analog({
+        nitro: {
+          output: {
+            dir: '../../../.vercel/output', // <- Vercel output
+            publicDir: '../../../.vercel/output/static', // <- Vercel output
+          },
+        },
+      }),
+      tsConfigPaths({
+        root: '../',
+      }),
+      splitVendorChunkPlugin(),
+    ],
+    test: {
+      globals: true,
+      environment: 'jsdom',
+      setupFiles: ['src/test-setup.ts'],
+      include: ['**/*.spec.ts'],
+      cache: {
+        dir: `../node_modules/.vitest`,
       },
-    }),
-  ],
-  test: {
-    globals: true,
-    environment: 'jsdom',
-    setupFiles: ['src/test.ts'],
-    include: ['**/*.spec.ts'],
-  },
-  define: {
-    'import.meta.vitest': mode !== 'production',
-  },
-}));
+    },
+    define: {
+      'import.meta.vitest': mode !== 'production',
+    },
+  };
+});
